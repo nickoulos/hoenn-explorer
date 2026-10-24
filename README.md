@@ -2,7 +2,7 @@
 
 [Play in your browser](https://nickoulos.github.io/hoenn-explorer/)
 
-A single-player 3D exploration prototype of Littleroot Town and Route 101.
+A single-player first-person 3D exploration prototype of Littleroot Town and Route 101.
 The environment was modeled in Blender and adapted for Godot 4.6's web renderer.
 
 ## Controls
@@ -10,7 +10,6 @@ The environment was modeled in Blender and adapted for Godot 4.6's web renderer.
 - WASD or arrow keys: walk
 - Shift: run
 - Mouse: look; hold the left button and drag if pointer capture is unavailable
-- Mouse wheel: zoom
 - Escape: pause
 - R: return to the village start
 
