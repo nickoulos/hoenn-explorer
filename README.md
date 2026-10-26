@@ -2,8 +2,10 @@
 
 [Play in your browser](https://nickoulos.github.io/hoenn-explorer/)
 
-A single-player first-person 3D exploration prototype of Littleroot Town and Route 101.
+A single-player first-person exploration of the connected Hoenn environment.
 The environment was modeled in Blender and adapted for Godot 4.6's web renderer.
+Visit Littleroot, Oldale, Petalburg, Rustboro, Routes 101–105 and 116,
+Petalburg Woods and the warm Rusturf Tunnel. Route 104 includes both halves.
 
 ## Controls
 
@@ -11,12 +13,16 @@ The environment was modeled in Blender and adapted for Godot 4.6's web renderer.
 - Shift: run
 - Mouse: look; hold the left button and drag if pointer capture is unavailable
 - Escape: pause
+- Escape menu: choose a destination and Travel
+- Space: jump
+- E: enter a nearby Center/Mart, or return outside
 - R: return to the village start
 
 Use a desktop browser with WebGL 2 and hardware acceleration enabled.
-The initial download includes the engine and both regions. Buildings are
-exterior-only; the northern end of Route 101 marks the prototype boundary.
-Walk around the ends of steep ledges; jumping is not implemented.
+Regions download as needed. The six Centers/Marts reuse two furnished interiors.
+Water can be crossed in first person. Routes 106, 110 and 115, Dewford and
+Verdanturf are not yet built. The fine grass uses shared geometry and distance
+levels of detail. Other buildings are exterior-only.
 
 ## Hosting and updates
 
