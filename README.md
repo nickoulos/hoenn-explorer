@@ -24,6 +24,12 @@ Water can be crossed in first person. Routes 106, 110 and 115, Dewford and
 Verdanturf are not yet built. The fine grass uses shared geometry and distance
 levels of detail. Other buildings are exterior-only.
 
+Click **Music**, then Play in the visible YouTube player for the original
+Pokémon Ruby/Sapphire soundtrack. Themes follow the current town, route or
+shop; areas sharing a theme keep it playing. Closing the player stops playback.
+Music streams from Pokémon's official YouTube compilation; no soundtrack
+media is included in this repository.
+
 ## Hosting and updates
 
 This repository contains the standalone browser release only. GitHub Pages

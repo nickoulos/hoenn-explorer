@@ -8,6 +8,9 @@
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#16372d;color:#f8ebd1;font-family:system-ui,sans-serif}#canvas{display:block;width:100%;height:100%;outline:none}#loading{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(ellipse at 75% 20%,#426a4d 0,transparent 60%),linear-gradient(145deg,#1e4435,#102c29);transition:opacity .45s}article{width:min(520px,85vw);text-align:center}.eyebrow{font-size:12px;letter-spacing:.25em;color:#c6d7ac}.mark{width:64px;height:64px;margin:0 auto 32px;color:#e2c791}h1{font-family:Georgia,serif;font-size:clamp(38px,5vw,62px);font-weight:400;letter-spacing:-.045em;margin:18px 0}p{color:#c5d1c0;line-height:1.7;font-size:15px}progress{appearance:none;width:100%;height:4px;border:0;margin:28px 0 12px;background:#ffffff17;border-radius:4px}progress::-webkit-progress-bar{background:#ffffff17;border-radius:4px}progress::-webkit-progress-value{background:#dfc38c;border-radius:4px}progress::-moz-progress-bar{background:#dfc38c}.meta{display:flex;justify-content:space-between;font-size:12px;color:#b0c6b1}#error{display:none;border:1px solid #dfc38c55;padding:20px;margin-top:24px;color:#f7ddbd;text-align:left;white-space:pre-line;font-size:14px;line-height:1.6}button{border:0;border-radius:6px;padding:12px 20px;background:#e3c68b;color:#213d34;font:inherit;cursor:pointer}footer{position:absolute;bottom:28px;font-size:11px;letter-spacing:.06em;color:#99b19d}noscript{position:fixed;inset:0;padding:20vh 10vw;background:#16372d;z-index:10}
 </style>
+<style>
+[hidden]{display:none!important}#music-toggle{position:fixed;right:18px;top:18px;z-index:4;background:#183b30eb;color:#f8ebd1;border:1px solid #e3c68b66;padding:9px 15px;font-size:13px}#music-panel{position:fixed;z-index:4;right:16px;top:16px;width:360px;max-width:calc(100vw - 32px);background:#183b30;color:#f8ebd1;border:1px solid #e3c68b66;border-radius:10px;box-shadow:0 8px 32px #0005;overflow:hidden}#music-heading{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;gap:12px}#music-heading span{font-size:10px;letter-spacing:.12em;color:#c6d7ac;display:block}#music-theme{font-size:14px;font-weight:500}#music-close{padding:6px 8px;background:transparent;color:#f8ebd1;font-size:12px;border:1px solid #e3c68b55}#music-frame{width:100%;height:203px;min-height:200px;background:#102c29}#music-frame iframe{display:block;border:0;width:100%;height:100%}#music-status{margin:0;padding:8px 12px 2px;font-size:11px;line-height:1.45;min-height:36px}#music-link{display:block;color:#e3c68b;font-size:11px;padding:5px 12px 10px}#music-toggle:focus-visible,#music-close:focus-visible,#music-link:focus-visible{outline:2px solid #e3c68b;outline-offset:-3px}@media(max-height:380px){#music-panel{top:4px;right:4px;width:320px}#music-heading{padding:4px 8px}#music-status{min-height:0;padding:4px 8px}#music-link{padding:3px 8px}}
+</style>
 <meta name="theme-color" content="#183b30">
 </head>
 <body>
@@ -20,9 +23,17 @@
 <div id="error"></div>
 </article><footer>TOWNS &nbsp; / &nbsp; FORESTS &nbsp; / &nbsp; COAST &nbsp; / &nbsp; CAVERNS</footer></div>
 <noscript>JavaScript must be enabled to explore the map.</noscript>
+<button id="music-toggle" aria-expanded="false" aria-controls="music-panel">♫ Music</button>
+<section id="music-panel" aria-label="Location music from YouTube" hidden>
+  <div id="music-heading"><div><span>ORIGINAL SOUNDTRACK · YOUTUBE</span><strong id="music-theme">Littleroot Town</strong></div><button id="music-close" aria-label="Stop music and close player">Close ×</button></div>
+  <div id="music-frame"></div>
+  <p id="music-status" role="status" aria-live="polite"></p>
+  <a id="music-link" href="https://www.youtube.com/watch?v=DzFlPk2UnQg&amp;t=239s" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+</section>
+<script src="youtube_music.js"></script>
 <script src="index.js"></script>
 <script>
-const config = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":72720,"index.wasm":37686550},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const config = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":81604,"index.wasm":37686550},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const engine = new Engine(config);
 const loading = document.getElementById('loading');
 function fail(error) {
