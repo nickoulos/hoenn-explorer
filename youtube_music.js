@@ -48,6 +48,13 @@
   const toggle=doc.getElementById('music-toggle'),panel=doc.getElementById('music-panel');
   const status=doc.getElementById('music-status'),title=doc.getElementById('music-theme'),link=doc.getElementById('music-link');
   let player=null,opened=false,startupHandled=false,ticket=0,apiPromise=null,areaTimer=null,requestedArea='littleroot';
+  let journeyStarted=false,pendingStart=false;
+  function startWhenReady(){
+    if(!pendingStart||!opened||doc.hidden||!model.player)return;
+    pendingStart=false;
+    status.textContent='Starting music…';
+    model.player.playVideo();
+  }
   function updateTheme(){
     const t=model.track;title.textContent=t?t.title:'No theme for this area';
     link.href=t?'https://www.youtube.com/watch?v='+t.videoId+'&t='+t.startSeconds+'s':'https://www.youtube.com/watch?v=DzFlPk2UnQg';
@@ -65,6 +72,7 @@
     return apiPromise;
   }
   function close(){
+    pendingStart=false;
     startupHandled=true;
     opened=false;++ticket;model.detach();if(player){player.destroy();player=null;}
     panel.hidden=true;toggle.hidden=false;toggle.setAttribute('aria-expanded','false');
@@ -89,15 +97,16 @@
           onReady(event){
             if(!opened||current!==ticket){event.target.destroy();return;}
             model.attach(event.target);event.target.getIframe().title='Official Pokémon soundtrack — YouTube player';
-            status.textContent='Press Play. Let the memories return.';
+            status.textContent=journeyStarted?'Press Play to resume.':'Music starts when you enter.';
+            startWhenReady();
           },
           onStateChange(event){
             if(!opened||current!==ticket)return;model.onState(event.data);
             if(event.data===1)status.textContent='Playing · music follows your journey.';
             else if(event.data===2)status.textContent='Paused · press Play to resume.';
-            else if(event.data===5)status.textContent='Press Play. Let the memories return.';
+            else if(event.data===5)status.textContent=journeyStarted?'Music ready.':'Music starts when you enter.';
           },
-          onAutoplayBlocked(){status.textContent='Press Play in the video to continue.';},
+          onAutoplayBlocked(){status.textContent='Your browser blocked playback. Press Play to start music.';},
           onError(event){model.playing=false;status.textContent='YouTube cannot play here (code '+event.data+'). Try the YouTube link below.';}
         }});
     }catch(error){if(opened&&current===ticket)status.textContent=error.message+' Close and reopen to retry, or use the link below.';}
@@ -108,11 +117,18 @@
     startupHandled=true;
     open({automatic:true});
   };
+  root.hoennStartMusic=()=>{
+    if(journeyStarted)return;
+    journeyStarted=true;
+    if(!opened||doc.hidden)return;
+    pendingStart=true;
+    startWhenReady();
+  };
   doc.getElementById('music-close').addEventListener('click',close);
   // Do not forward player controls/keyboard navigation to the first-person controller.
   panel.addEventListener('keydown',event=>event.stopPropagation());
   panel.addEventListener('keyup',event=>event.stopPropagation());
-  doc.addEventListener('visibilitychange',()=>model.setVisible(!doc.hidden));
+  doc.addEventListener('visibilitychange',()=>{if(doc.hidden)pendingStart=false;model.setVisible(!doc.hidden);});
   root.hoennSetMusicArea=area=>{
     if(area===requestedArea)return;requestedArea=area;clearTimeout(areaTimer);
     areaTimer=setTimeout(()=>{model.setArea(area);updateTheme();},800);

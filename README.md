@@ -19,13 +19,15 @@ Petalburg Woods and the warm Rusturf Tunnel. Route 104 includes both halves.
 - E: enter a nearby Center/Mart, or return outside
 - R: return to the village start
 
-Use a desktop browser with WebGL 2 and hardware acceleration enabled.
+Use a WebGL 2 browser with hardware acceleration enabled. On phones/tablets,
+use the left thumbstick to move, drag the right side to look, and use the
+Jump, Use and Pause buttons. Push the stick fully to run.
 Regions download as needed. The six Centers/Marts reuse two furnished interiors.
 Water can be crossed in first person. Routes 106, 110 and 115, Dewford and
 Verdanturf are not yet built. The fine grass uses shared geometry and distance
 levels of detail. Other buildings are exterior-only.
 
-The compact music panel opens once the village is ready. Press Play for the original
+The compact music panel opens once the village is ready. Choose Enter to start the original
 Pokémon Ruby/Sapphire soundtrack. Themes follow the current town, route or
 shop; areas sharing a theme keep it playing. Closing the player stops playback.
 Music streams from Pokémon's official YouTube compilation; no soundtrack
