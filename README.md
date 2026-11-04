@@ -16,6 +16,7 @@ Petalburg Woods and the warm Rusturf Tunnel. Route 104 includes both halves.
 - Escape menu: choose a destination and Travel
 - Graphics: High, Balanced (default), or Performance; your choice is remembered
 - Space: jump
+- Center/Mart doors open as you approach: walk onto the doorstep to enter, and return to the entrance to leave
 - E: enter a nearby Center/Mart, or return outside
 - R: return to the village start
 
